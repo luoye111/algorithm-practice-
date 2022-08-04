@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var isPalindrome = function (x) {
+            x = x + ''
+            let l = 0;
+            let r = 0
+            let len = x.length
+            if (len == 1) return true
+            if (len % 2 == 0) {
+                let num = (len / 2) - 1
+                if (x[num] != x[num + 1]) return false
+                l = num - 1
+                r = num + 2
+            } else {
+                let num = Math.ceil(len / 2) - 1
+                l = num - 1
+                r = num + 1
+            }
+            while (l >= 0) {
+                if (x[l] != x[r]) return false
+                l--;
+                r++;
+            }
+            return true
+        };
+        console.log(isPalindrome(-10))
+        let arr = [1, 2, 3, 4]
+        arr.some(item => {
+            if (item == 2) return false
+            console.log(item)
+            if (item == 3) return true
+        })
+    </script>
+</body>
+
+</html>

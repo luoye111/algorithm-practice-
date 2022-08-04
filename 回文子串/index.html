@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+</body>
+<script>
+    // 中心扩散法  一个元素为中心 向两边扩散
+    function getpalindrome (str) {
+        let left = 0;
+        let right = 2;
+        let center = 1
+        let lastleft = 0
+        let lastright = 0;
+        let falg = true
+        let scope = []
+        while (center <= str.length - 1) {
+            if (str[left] == str[right]) {
+                find(left, right)
+            }
+            if (str[left] == str[center]) {
+                lastleft = left
+                lastright = center
+                left--
+                find(left, right)
+            }
+            center++
+            left = center - 1
+            right = center + 1
+
+        }
+        function find (left, right) {
+            while (str[left] == str[right] && str[left] && str[right]) {
+                lastleft = left
+                lastright = right
+                left--
+                right++
+            }
+            update()
+        }
+        function update () {
+            if (scope[1] - scope[0] < lastright - lastleft || scope[0] == undefined) {
+                scope[0] = lastleft;
+                scope[1] = lastright
+            }
+
+            console.log(scope)
+        }
+
+        return scope[0] != undefined ? str.slice(scope[0], scope[1] + 1) : str[0]
+    }
+
+
+    console.log(getpalindrome("abbcccbbbcaaccbababcbcabca"));
+
+</script>
+
+</html>
