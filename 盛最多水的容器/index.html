@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=s, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .masonry {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            width: calc(100%/3);
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="masonry">
+        <div class="column">
+            <div class="item">
+                <div class="item__content"></div>
+            </div>
+            <div class="item">
+                <div class="item__content"></div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="item">
+                <div class="item__content"></div>
+            </div>
+            <!-- more items -->
+        </div>
+        <div class="column">
+            <div class="item">
+                <div class="item__content"></div>
+            </div>
+            <div class="item">
+                <div class="item__content"></div>
+            </div>
+            <div class="item">
+                <div class="item__content"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 暴力解法
+        var maxArea = function (arr) {
+            let max = 0;
+            for (var i = 0; i < arr.length; i++) {
+                for (var j = i + 1; j < arr.length; j++) {
+                    let w = j - i;
+                    let h = arr[i] < arr[j] ? arr[i] : arr[j]
+                    max = max < w * h ? w * h : max
+                }
+            }
+            return max
+        }
+        // 双指针 从最宽 到最长
+        var maxArea = function (arr) {
+            let l = 0;
+            let r = arr.length - 1
+            let max = 0;
+            while (l != r) {
+                let w = r - l;
+                let h = arr[l] < arr[r] ? arr[l] : arr[r]
+                max = max < w * h ? w * h : max
+                if (arr[l] > arr[r]) {
+                    r--
+                } else {
+                    l++
+                }
+            }
+            return max
+        }
+    </script>
+</body>
+
+</html>
